@@ -1,8 +1,8 @@
 package com.github.migangqui.spring.serveo;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
@@ -12,47 +12,59 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-@Slf4j
 @Component
-@RequiredArgsConstructor
 @ConditionalOnProperty(name = "serveo.enabled", havingValue = "true")
 public class ServeoExecutor {
 
+    private final Logger log = LoggerFactory.getLogger(ServeoExecutor.class);
+
     private final Environment env;
+
+    public ServeoExecutor(final Environment env) {
+        this.env = env;
+    }
 
     @Value("${server.port:8080}")
     private String serverPort;
 
-    @Value("${server.servlet.context-path}")
+    @Value("${server.servlet.context-path:}")
     private String contextPath;
 
-    @Value("${spring.application.name}")
+    @Value("${spring.application.name:}")
     private String appName;
+
+    @Value("${serveo.custom.domain:}")
+    private String configuredCustomDomain;
 
     @EventListener(ApplicationStartedEvent.class)
     public void run() throws IOException {
-        String customDomain = env.getProperty("serveo.custom.domain");
+        String customDomain;
 
-        if (customDomain == null) {
-            if (appName == null) {
+        if (configuredCustomDomain.isEmpty()) {
+            if (appName.isEmpty()) {
                 customDomain = RandomStringUtils.randomAlphanumeric(6).toLowerCase();
             } else {
                 customDomain = appName;
             }
         } else {
-            validateCustomDomain(customDomain);
+            customDomain = configuredCustomDomain;
         }
 
-        final String domain = customDomain + ".serveo.net";
+        if (validCustomDomain(customDomain)) {
+            final String domain = customDomain + ".serveo.net";
 
-        Runtime.getRuntime().exec(String.format("ssh -R %s:80:localhost:%s serveo.net", domain, serverPort));
+            Runtime.getRuntime().exec(String.format("ssh -R %s:80:localhost:%s serveo.net", domain, serverPort));
 
-        log.info("Remote access to application with url -> {}", "https://" + domain + contextPath);
+            log.info("Remote access to application with url -> {}", "https://" + domain + contextPath);
+        }
     }
 
-    private void validateCustomDomain(final String customDomain) {
+    private boolean validCustomDomain(final String customDomain) {
+        boolean valid = true;
         if (customDomain.contains(".") || customDomain.contains("$")) {
-            throw  new IllegalArgumentException("Custom domain contains invalid characters");
+            log.warn("Serveo not working: configured custom domain contains invalid characters");
+            valid = false;
         }
+        return valid;
     }
 }

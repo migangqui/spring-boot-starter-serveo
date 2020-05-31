@@ -12,18 +12,20 @@ When you add this dependency to your pom.xml and configure it, you'll automatica
 
  ## Dependency
  
+ Actual version is 1.1
+ 
  * Maven:
  ```xml
 <dependency>
     <groupId>com.github.migangqui</groupId>
     <artifactId>spring-boot-starter-serveo</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 </dependency>
 ```
 
 * Gradle:
  ```xml
-compile('com.github.migangqui:spring-boot-starter-serveo:1.0')
+compile('com.github.migangqui:spring-boot-starter-serveo:1.1')
 ```
 
 ## Configuration
