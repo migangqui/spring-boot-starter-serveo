@@ -1,4 +1,4 @@
-# Spring Boot Starter Serveo
+# Serveo Spring Boot Starter
 
 Spring Boot Starter to share your localhost Spring Application with an external url.
 
@@ -12,20 +12,36 @@ When you add this dependency to your pom.xml and configure it, you'll automatica
 
  ## Dependency
  
- Actual version is 1.1
+ Old dependency:
+ 
+  * Maven:
+  ```xml
+ <dependency>
+     <groupId>com.github.migangqui</groupId>
+     <artifactId>spring-boot-starter-serveo</artifactId>
+     <version>1.0</version>
+ </dependency>
+ ```
+ 
+ * Gradle:
+  ```xml
+ compile('com.github.migangqui:spring-boot-starter-serveo:1.0')
+ ```
+ 
+ Actual version is 1.0
  
  * Maven:
  ```xml
 <dependency>
     <groupId>com.github.migangqui</groupId>
-    <artifactId>spring-boot-starter-serveo</artifactId>
-    <version>1.1</version>
+    <artifactId>serveo-spring-boot-starter</artifactId>
+    <version>1.0</version>
 </dependency>
 ```
 
 * Gradle:
  ```xml
-compile('com.github.migangqui:spring-boot-starter-serveo:1.1')
+compile('com.github.migangqui:serveo-spring-boot-starter:1.0')
 ```
 
 ## Configuration
@@ -47,3 +63,8 @@ serveo:
 
 * Based in similar ngrok starter: https://github.com/kilmajster/ngrok-spring-boot-starter
 * http://serveo.net/#manual
+
+### Disclaimer
+
+ArtifactId has been modified from <b>spring-boot-starter-serveo</b> to <b>serveo-spring-boot-starter</b> to follow Spring instruction starters naming
+https://docs.spring.io/spring-boot/docs/2.0.0.M5/reference/html/boot-features-developing-auto-configuration.html#boot-features-custom-starter-naming

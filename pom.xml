@@ -12,11 +12,11 @@
     </parent>
 
     <groupId>com.github.migangqui</groupId>
-    <artifactId>spring-boot-starter-serveo</artifactId>
-    <version>1.1</version>
+    <artifactId>serveo-spring-boot-starter</artifactId>
+    <version>1.0</version>
 
-    <name>spring-boot-starter-serveo</name>
-    <description>Spring Boot Starter Serveo</description>
+    <name>serveo-spring-boot-starter</name>
+    <description>Serveo Spring Boot Starter</description>
 
     <url>https://github.com/migangqui/spring-boot-starter-serveo</url>
     <developers>
