@@ -12,23 +12,7 @@ When you add this dependency to your pom.xml and configure it, you'll automatica
 
  ## Dependency
  
- Old dependency:
- 
-  * Maven:
-  ```xml
- <dependency>
-     <groupId>com.github.migangqui</groupId>
-     <artifactId>spring-boot-starter-serveo</artifactId>
-     <version>1.0</version>
- </dependency>
- ```
- 
- * Gradle:
-  ```xml
- compile('com.github.migangqui:spring-boot-starter-serveo:1.0')
- ```
- 
- Actual version is 1.0
+Actual version is 1.1
  
  * Maven:
  ```xml
@@ -43,6 +27,8 @@ When you add this dependency to your pom.xml and configure it, you'll automatica
  ```xml
 compile('com.github.migangqui:serveo-spring-boot-starter:1.0')
 ```
+
+https://mvnrepository.com/artifact/com.github.migangqui/serveo-spring-boot-starter
 
 ## Configuration
 

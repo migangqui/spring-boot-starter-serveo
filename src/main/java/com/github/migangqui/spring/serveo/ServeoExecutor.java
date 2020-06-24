@@ -51,7 +51,7 @@ public class ServeoExecutor {
         }
 
         if (validCustomDomain(customDomain)) {
-            final String domain = customDomain + ".serveo.net";
+            final String domain = customDomain + ".serveousercontent.com";
 
             Runtime.getRuntime().exec(String.format("ssh -R %s:80:localhost:%s serveo.net", domain, serverPort));
 
