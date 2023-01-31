@@ -1,4 +1,7 @@
-# Serveo Spring Boot Starter
+
+# Serveo Spring Boot Starter (DEPRECATED)
+
+### SERVEO not exists nowadays.
 
 Spring Boot Starter to share your localhost Spring Application with an external url.
 
